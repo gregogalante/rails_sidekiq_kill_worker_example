@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a [Rails](https://rubyonrails.org/) application.
+This is a [Rails](https://rubyonrails.org/) application.<br>
 This is an example of implementation of an ActiveJob used with sidekiq that should be killed during execution.
 
 ## Getting Started
