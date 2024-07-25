@@ -1,0 +1,31 @@
+
+<%= turbo_frame_tag dom_id operation do %>
+  <div id="<%= dom_id operation %>">
+    <p>
+      <strong>Status:</strong>
+      <%= operation.status %>
+    </p>
+
+    <p>
+      <strong>Kill status:</strong>
+      <%= operation.kill_status %>
+    </p>
+
+    <p>
+      <strong>Started at:</strong>
+      <%= operation.started_at %>
+    </p>
+
+    <p>
+      <strong>Pinged at:</strong>
+      <%= operation.pinged_at %>
+    </p>
+
+    <p>
+      <strong>Ended at:</strong>
+      <%= operation.ended_at %>
+    </p>
+  </div>
+<% end %>
+
+<%= turbo_stream_from operation %>

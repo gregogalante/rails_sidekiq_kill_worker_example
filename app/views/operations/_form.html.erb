@@ -1,0 +1,27 @@
+<%= form_with(model: operation) do |form| %>
+  <% if operation.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(operation.errors.count, "error") %> prohibited this operation from being saved:</h2>
+
+      <ul>
+        <% operation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div style="margin-top: 10px">
+    <%= form.label :status, style: "display: block" %>
+    <%= form.select :status, options_for_select(Operation.statuses.keys, operation.status), {}, { disabled: true, style: 'display: block; width: 100%' } %>
+  </div>
+
+  <div style="margin-top: 10px">
+    <%= form.label :kill_status, style: "display: block" %>
+    <%= form.select :kill_status, options_for_select(Operation.kill_statuses.keys, operation.kill_status), {}, { disabled: !operation.kill_disabled?, style: 'display: block; width: 100%' } %>
+  </div>
+
+  <div style="margin-top: 10px">
+    <%= form.submit %>
+  </div>
+<% end %>

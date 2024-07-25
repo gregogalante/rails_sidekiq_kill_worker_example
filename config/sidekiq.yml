@@ -1,0 +1,24 @@
+verbose: false
+concurrency: 5
+timeout: 30
+max_retries: 3
+pidfile: ./tmp/pids/sidekiq.pid
+logfile: ./log/sidekiq.log
+
+queues:
+  - critical
+  - default
+  - mailers
+  - low
+  - action_mailbox_routing
+  - action_mailbox_incineration
+  - active_storage_analysis
+  - active_storage_purge
+
+# scheduler:
+#   schedule:
+#     ExampleJob:
+#       cron: */1 Dockerfile Gemfile Gemfile.lock Procfile README.md Rakefile app bin config config.ru db lib log public storage test tmp vendor Dockerfile Gemfile Gemfile.lock Procfile README.md Rakefile app bin config config.ru db lib log public storage test tmp vendor Dockerfile Gemfile Gemfile.lock Procfile README.md Rakefile app bin config config.ru db lib log public storage test tmp vendor *
+#       class: ExampleJob
+#       queue: scheduled
+
