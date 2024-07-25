@@ -5,8 +5,6 @@ class OperationRunJob < ApplicationJob
 
     operation.update!(status: :running, started_at: Time.now)
 
-
-
     thread_runner = Thread.new do
       counter = 0
       while counter < 60
@@ -14,6 +12,8 @@ class OperationRunJob < ApplicationJob
         operation.update!(pinged_at: Time.now)
         sleep(1)
       end
+
+      operation.update!(status: :success, ended_at: Time.now)
     end
 
     thread_checker = Thread.new do
@@ -38,8 +38,6 @@ class OperationRunJob < ApplicationJob
 
     thread_runner.join
     thread_checker.join
-
-    operation.update!(status: :success, ended_at: Time.now) if operation.running?
   rescue StandardError => e
     Rails.logger.error(e)
     operation&.update!(status: :failed, ended_at: Time.now)

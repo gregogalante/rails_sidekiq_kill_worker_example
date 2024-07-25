@@ -3,7 +3,9 @@
 ## Description
 
 This is a [Rails](https://rubyonrails.org/) application.<br>
-This is an example of implementation of an ActiveJob used with sidekiq that should be killed during execution.
+This is an example of implementation of an ActiveJob used with sidekiq that should be killed during execution.<br><br>
+
+Job implementation available on [OperationRunJob code](https://github.com/gregogalante/rails_sidekiq_kill_worker_example/blob/main/app/jobs/operation_run_job.rb).
 
 ## Getting Started
 
