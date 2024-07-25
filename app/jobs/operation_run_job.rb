@@ -15,6 +15,9 @@ class OperationRunJob < ApplicationJob
         sleep(1)
       end
 
+      # operation_script_path = Rails.root.join('vendor', 'operation.py')
+      # `python3 #{operation_script_path}`
+
       operation.update!(status: :success, ended_at: Time.now)
     end
 
