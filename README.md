@@ -3,7 +3,7 @@
 ## Description
 
 This is a [Rails](https://rubyonrails.org/) application.<br>
-This is an example of implementation of an ActiveJob used with sidekiq that should be killed during execution.
+This is an example of implementation of an ActiveJob used with sidekiq that should be killed during execution.<br><br>
 
 ## Getting Started
 
@@ -28,18 +28,5 @@ This is an example of implementation of an ActiveJob used with sidekiq that shou
 
 ### Usage
 
-- Start the app with **rails s**
-
-- Run rails console with **rails c**
-
-- Run rails tasks with **rails TASK_NAME**
-
-- Run tests with **rails test**
-
-The homepage of the app will be available at [http://localhost:3000](http://localhost:3000).<br>
-The admin panel of the app will be available at [http://localhost:3000/adm](http://localhost:3000/adm).
-
-You can login in the admin panel with the following credentials:
-- email: admin@mail.com
-- password: Password1!
+- Start the app with **foreman start**
 
