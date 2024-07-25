@@ -10,3 +10,5 @@
 
   <%= button_to "Destroy this operation", @operation, method: :delete %>
 </div>
+
+<%= turbo_stream_from @operation %>

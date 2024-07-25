@@ -3,9 +3,11 @@ class OperationRunJob < ApplicationJob
     operation = Operation.find_by_id(operation_id)
     return unless operation&.pending?
 
-    operation.update!(status: :running, started_at: Time.now)
+
 
     thread_runner = Thread.new do
+      operation.update!(status: :running, started_at: Time.now)
+
       counter = 0
       while counter < 60
         counter += 1
@@ -17,21 +19,22 @@ class OperationRunJob < ApplicationJob
     end
 
     thread_checker = Thread.new do
-      while operation.kill_status != 'requested'
+      while thread_runner.alive?
         sleep 5
         operation.reload
-      end
-      if operation.kill_status == 'requested'
-        begin
-          thread_runner.kill
-          operation.update!(
-            kill_status: :confirmed,
-            status: :killed,
-            ended_at: Time.now
-          )
-        rescue StandardError => e
-          Rails.logger.error(e)
-          operation.update!(kill_status: :failed)
+
+        if operation.kill_status == 'requested'
+          begin
+            thread_runner.kill
+            operation.update!(
+              kill_status: :confirmed,
+              status: :killed,
+              ended_at: Time.now
+            )
+          rescue StandardError => e
+            Rails.logger.error(e)
+            operation.update!(kill_status: :failed)
+          end
         end
       end
     end
